@@ -25,6 +25,32 @@ if(!centerHead()){
 var chObs=new MutationObserver(function(){if(centerHead()){chObs.disconnect();}});
 chObs.observe(document.documentElement,{childList:true,subtree:true});
 }
+function centerHero(){
+var hero=document.querySelector("section.section-carousel div.theme-container");
+if(!hero)return false;
+var mob=window.matchMedia("(max-width:767px)");
+function apply(){
+var on=mob.matches;
+if(on){hero.id="lataif-hero";}
+hero.style.alignItems=on?"center":"";
+var kc=hero.children;
+for(var i=0;i<kc.length;i++){
+if(kc[i].tagName==="DIV"){
+kc[i].style.alignItems=on?"center":"";
+kc[i].style.textAlign=on?"center":"";
+break;
+}
+}
+}
+if(mob.addEventListener){mob.addEventListener("change",apply);}
+else if(mob.addListener){mob.addListener(apply);}
+apply();
+return true;
+}
+if(!centerHero()){
+var hhObs=new MutationObserver(function(){if(centerHero()){hhObs.disconnect();}});
+hhObs.observe(document.documentElement,{childList:true,subtree:true});
+}
 var phone="966561464946";
 var msg="Ø§Ù„Ø³Ù„Ø§Ù… Ø¹Ù„ÙŠÙƒÙ…ØŒ Ø£Ø³ØªÙØ³Ø± Ø¹Ù† Ø§Ù„Ø¹Ø·ÙˆØ± Ø§Ù„Ù…ØªÙˆÙØ±Ø© ÙÙŠ Ù„Ø·Ø§Ø¦Ù";
 var path=location.pathname||"";
