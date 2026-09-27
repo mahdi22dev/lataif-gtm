@@ -25,4 +25,33 @@ if(document.body){document.body.appendChild(root);requestAnimationFrame(function
 else{document.addEventListener("DOMContentLoaded",mount);}
 }
 mount();
+var igUser="lataif.store";
+var igCss="#lataif-ig-footer{display:flex;justify-content:center;padding:14px 16px 20px}#lataif-ig-footer a{display:inline-flex;align-items:center;gap:9px;text-decoration:none;color:inherit;font-weight:600;font-size:15px}#lataif-ig-icon{width:38px;height:38px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:#ffffff;background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285AEB 90%);box-shadow:0 4px 14px rgba(0,0,0,.25)}#lataif-ig-icon svg{width:22px;height:22px;display:block}";
+var igStyle=document.createElement("style");
+igStyle.textContent=igCss;
+(document.head||document.documentElement).appendChild(igStyle);
+function igBar(){
+if(document.getElementById("lataif-ig-footer"))return true;
+var host=document.querySelector("footer")||document.body;
+if(!host)return false;
+var bar=document.createElement("div");
+bar.id="lataif-ig-footer";
+var a=document.createElement("a");
+a.href="https://instagram.com/"+igUser;
+a.target="_blank";
+a.rel="noopener noreferrer";
+a.setAttribute("aria-label","Instagram "+igUser);
+a.innerHTML='<span id="lataif-ig-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor" stroke="none"/></svg></span><span>@'+igUser+'</span>';
+a.addEventListener("click",function(){
+var dl=window.gtmDataLayer||window.dataLayer;
+if(dl&&dl.push){dl.push({event:"instagram_click"});}
+});
+bar.appendChild(a);
+host.appendChild(bar);
+return true;
+}
+if(!igBar()){
+var igObs=new MutationObserver(function(){if(igBar()){igObs.disconnect();}});
+igObs.observe(document.documentElement,{childList:true,subtree:true});
+}
 })();
